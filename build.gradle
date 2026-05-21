@@ -10,11 +10,8 @@ base {
     archivesName = project.archives_base_name
 }
 
-
-fabricApi {
-    configureDataGeneration {
-        client = true
-    }
+loom {
+    accessWidenerPath = file("src/main/resources/full_level.accesswidener")
 }
 
 repositories {

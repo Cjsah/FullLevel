@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "id": "full_level",
+  "id": "fulllevel",
   "version": "${version}",
   "name": "FullLevel",
   "description": "",
@@ -13,7 +13,7 @@
     "issues": "https://github.com/Cjsah/FullLevel/issues"
   },
   "license": "Apache-2.0",
-  "icon": "assets/full_level/icon.png",
+  "icon": "assets/fulllevel/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
@@ -21,8 +21,9 @@
     ]
   },
   "mixins": [
-    "full_level.mixins.json"
+    "fulllevel.mixins.json"
   ],
+  "accessWidener": "fulllevel.accesswidener",
   "depends": {
     "minecraft": "${minecraft_version}"
   }

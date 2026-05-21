@@ -1,9 +1,10 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "org.example.fulllevel.mixin",
+  "package": "net.cjsah.fulllevel.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "BuiltInRegistriesMixin"
   ],
   "client": [
   ],
