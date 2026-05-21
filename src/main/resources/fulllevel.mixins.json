@@ -4,7 +4,8 @@
   "package": "net.cjsah.fulllevel.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "BuiltInRegistriesMixin"
+    "BuiltInRegistriesMixin",
+    "ChunkGeneratorAccessor"
   ],
   "client": [
     "WorldCreationUiStateMixin"

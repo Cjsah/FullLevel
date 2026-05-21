@@ -18,7 +18,6 @@ public class WorldCreationUiStateMixin {
     @WrapOperation(method = "updatePresetLists", at = @At(value = "INVOKE", target = "Ljava/util/Optional;orElseGet(Ljava/util/function/Supplier;)Ljava/lang/Object;"))
     private <T> T reSortPresets(Optional<T> instance, Supplier<? extends T> supplier, Operation<T> original) {
         List<WorldCreationUiState.WorldTypeEntry> presets = (List<WorldCreationUiState.WorldTypeEntry>) original.call(instance, supplier);
-
         List<WorldCreationUiState.WorldTypeEntry> result = new ArrayList<>(presets.size());
 
         for (WorldCreationUiState.WorldTypeEntry preset : presets) {
@@ -29,10 +28,6 @@ public class WorldCreationUiStateMixin {
                 result.add(preset);
             }
         }
-        System.out.println("before");
-        System.out.println(presets);
-        System.out.println("after");
-        System.out.println(result);
         return (T) result;
     }
 

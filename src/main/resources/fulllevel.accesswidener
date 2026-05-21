@@ -1,2 +1,6 @@
 accessWidener v2 named
 extendable class net/minecraft/world/level/levelgen/NoiseBasedChunkGenerator
+accessible method net/minecraft/world/level/levelgen/NoiseBasedChunkGenerator createNoiseChunk (Lnet/minecraft/world/level/chunk/ChunkAccess;Lnet/minecraft/world/level/StructureManager;Lnet/minecraft/world/level/levelgen/blending/Blender;Lnet/minecraft/world/level/levelgen/RandomState;)Lnet/minecraft/world/level/levelgen/NoiseChunk;
+accessible method net/minecraft/world/level/levelgen/NoiseChunk cellWidth ()I
+accessible method net/minecraft/world/level/levelgen/NoiseChunk cellHeight ()I
+accessible field net/minecraft/world/level/chunk/ChunkGenerator featuresPerStep Ljava/util/function/Supplier;
