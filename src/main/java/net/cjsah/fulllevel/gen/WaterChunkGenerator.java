@@ -8,6 +8,7 @@ import net.minecraft.CrashReport;
 import net.minecraft.ReportedException;
 import net.minecraft.SharedConstants;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.core.SectionPos;
@@ -38,13 +39,16 @@ import net.minecraft.world.level.levelgen.WorldgenRandom;
 import net.minecraft.world.level.levelgen.XoroshiroRandomSource;
 import net.minecraft.world.level.levelgen.blending.Blender;
 import net.minecraft.world.level.levelgen.feature.FeatureCountTracker;
+import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraft.world.level.levelgen.structure.StructurePiece;
+import net.minecraft.world.level.levelgen.structure.pieces.StructurePieceType;
 import net.minecraft.world.level.levelgen.structure.structures.StrongholdStructure;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Supplier;
@@ -137,14 +141,23 @@ public class WaterChunkGenerator extends NoiseBasedChunkGenerator {
                             if (structure instanceof StrongholdStructure) {
                                 level.setCurrentlyGenerating(supplier);
                                 structureManager.startsForStructure(sectionPos, structure).forEach(structureStart -> {
-                                    for (StructurePiece piece : structureStart.getPieces()) {
-                                        if (piece.isCloseToChunk())
+                                    List<StructurePiece> pieces = structureStart.getPieces();
 
+                                    Optional<StructurePiece> optional = pieces.stream()
+                                        .filter(it -> it.getType() == StructurePieceType.STRONGHOLD_PORTAL_ROOM)
+                                        .findFirst();
+
+                                    if (optional.isPresent()) {
+                                        StructurePiece piece = optional.get();
+
+                                        BoundingBox writableBox = ChunkGeneratorAccessor.invokeGetWritableArea(chunk);
+                                        BoundingBox totalBox = (pieces.getFirst()).getBoundingBox();
+                                        BlockPos center = totalBox.getCenter();
+                                        BlockPos bottomCenter = new BlockPos(center.getX(), totalBox.minY(), center.getZ());
+
+                                        new StrongholdOnlyPortalRoom(piece)
+                                            .postProcess(level, structureManager, this, random, writableBox, chunkPos, bottomCenter);
                                     }
-
-
-                                    structureStart.placeInChunk(level, structureManager, this, random, getWritableArea(chunkAccess), chunkPos)
-
                                 });
                             }
                         } catch (Exception e) {
