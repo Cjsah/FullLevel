@@ -6,7 +6,8 @@
   "mixins": [
     "BuiltInRegistriesMixin",
     "ChunkGeneratorAccessor",
-    "EndDragonFightMixin"
+    "EndDragonFightMixin",
+    "PortalForcerMixin"
   ],
   "client": [
     "WorldCreationUiStateMixin"
