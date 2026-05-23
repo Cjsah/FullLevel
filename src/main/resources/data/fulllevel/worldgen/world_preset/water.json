@@ -14,7 +14,7 @@
     "minecraft:the_nether": {
       "type": "minecraft:the_nether",
       "generator": {
-        "type": "fulllevel:water",
+        "type": "fulllevel:lava",
         "biome_source": {
           "type": "minecraft:multi_noise",
           "preset": "minecraft:nether"
@@ -25,7 +25,7 @@
     "minecraft:the_end": {
       "type": "minecraft:the_end",
       "generator": {
-        "type": "fulllevel:water",
+        "type": "fulllevel:void",
         "biome_source": {
           "type": "minecraft:the_end"
         },

@@ -7,11 +7,11 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.NoiseGeneratorSettings;
 
-public class WaterChunkGenerator extends FullLevelChunkGenerator {
-    public static final MapCodec<WaterChunkGenerator> CODEC = makeCodec(WaterChunkGenerator::new);
+public class VoidChunkGenerator extends FullLevelChunkGenerator {
+    public static final MapCodec<VoidChunkGenerator> CODEC = makeCodec(VoidChunkGenerator::new);
 
-    public WaterChunkGenerator(BiomeSource biomeSource, Holder<NoiseGeneratorSettings> holder) {
-        super(biomeSource, holder, Blocks.WATER);
+    public VoidChunkGenerator(BiomeSource biomeSource, Holder<NoiseGeneratorSettings> holder) {
+        super(biomeSource, holder, Blocks.AIR);
     }
 
     @Override
