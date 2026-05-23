@@ -7,7 +7,7 @@ import net.minecraft.world.level.levelgen.presets.WorldPreset;
 import org.jetbrains.annotations.NotNull;
 
 public class ModWorldPresets {
-    public static final ResourceKey<WorldPreset> WATER = preset("water");
+    public static final ResourceKey<WorldPreset> FLUID = preset("fluid");
 
     private static @NotNull ResourceKey<WorldPreset> preset(String path) {
         return ResourceKey.create(Registries.WORLD_PRESET, FullLevel.of(path));

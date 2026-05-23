@@ -21,7 +21,7 @@ public class WorldCreationUiStateMixin {
         List<WorldCreationUiState.WorldTypeEntry> result = new ArrayList<>(presets.size());
 
         for (WorldCreationUiState.WorldTypeEntry preset : presets) {
-            if (preset.preset().is(ModWorldPresets.WATER)) {
+            if (preset.preset().is(ModWorldPresets.FLUID)) {
                 if (result.isEmpty()) result.add(preset);
                 else result.add(1, preset);
             } else {

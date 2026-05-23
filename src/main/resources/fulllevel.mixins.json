@@ -5,7 +5,8 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "BuiltInRegistriesMixin",
-    "ChunkGeneratorAccessor"
+    "ChunkGeneratorAccessor",
+    "EndDragonFightMixin"
   ],
   "client": [
     "WorldCreationUiStateMixin"
