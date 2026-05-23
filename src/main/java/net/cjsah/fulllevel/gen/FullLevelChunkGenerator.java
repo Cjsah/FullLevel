@@ -219,32 +219,34 @@ public abstract class FullLevelChunkGenerator extends NoiseBasedChunkGenerator {
                     chunk.selectCellYZ(cy, cz);
 
                     for (int iy = cellHeight - 1; iy >= 0; iy--) {
-                        int uy = (i + cy) * cellHeight + iy;
-                        int y = uy & 15;
-                        int ccs = chunkAccess.getSectionIndex(uy);
+                        int actY = (i + cy) * cellHeight + iy;
+                        int y = actY & 15;
+                        int ccs = chunkAccess.getSectionIndex(actY);
                         if (cs != ccs) {
                             cs = ccs;
                             section = chunkAccess.getSection(ccs);
                         }
 
                         double ucy = (double) iy / cellHeight;
-                        chunk.updateForY(uy, ucy);
+                        chunk.updateForY(actY, ucy);
 
                         for (int xz = 0; xz < cellWidth; xz++) {
-                            int ux = minX + cx * cellWidth + xz;
-                            int x = ux & 15;
+                            int actX = minX + cx * cellWidth + xz;
+                            int x = actX & 15;
                             double ucx = (double) xz / cellWidth;
-                            chunk.updateForX(ux, ucx);
+                            chunk.updateForX(actX, ucx);
 
                             for (int ab = 0; ab < cellWidth; ab++) {
-                                int uz = minZ + cz * cellWidth + ab;
-                                int z = uz & 15;
+                                int actZ = minZ + cz * cellWidth + ab;
+                                int z = actZ & 15;
                                 double ucz = (double) ab / cellWidth;
-                                chunk.updateForZ(uz, ucz);
+                                chunk.updateForZ(actZ, ucz);
 
-                                section.setBlockState(x, y, z, this.placedBlock, false);
-                                heightmap.update(x, uy, z, this.placedBlock);
-                                heightmap2.update(x, uy, z, this.placedBlock);
+                                BlockState state = this.getPlacedBlock(actX, actY, actZ);
+
+                                section.setBlockState(x, y, z, state, false);
+                                heightmap.update(x, actY, z, state);
+                                heightmap2.update(x, actY, z, state);
                             }
                         }
                     }
@@ -256,6 +258,10 @@ public abstract class FullLevelChunkGenerator extends NoiseBasedChunkGenerator {
 
         chunk.stopInterpolation();
         return chunkAccess;
+    }
+
+    protected BlockState getPlacedBlock(int x, int y, int z) {
+        return this.placedBlock;
     }
 
 }
